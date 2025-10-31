@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>联系我们 — HJHY</title>
+  <meta name="description" content="模特展示与经纪服务，写真、商业拍摄、走秀与影视合作。" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="images/logo.svg" />
+  <meta property="og:title" content="联系我们 — HJHY"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:image" content="images/hero.jpg" onerror="this.onerror=null;this.src='images/hero.svg';"/>
+  <meta property="og:locale" content="zh_CN"/>
+</head>
+<body>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <a href="index.html" class="brand">
+          <img src="images/logo.svg" alt="Logo" class="logo" />
+          <span>HJHY</span>
+        </a>
+        <nav class="main-nav">
+          <a href="index.html" >首页</a>
+          <a href="models.html" >模特</a>
+          <a href="about.html" >关于我们</a>
+          <a href="contact.html" class="active">联系我们</a>
+        </nav>
+        <button class="menu-btn" aria-label="菜单">☰</button>
+      </div>
+    </header>
+    
+<main>
+
+<section class="contact">
+  <div class="container">
+    <h1>联系我们</h1>
+    <form id="contact-form" action="https://formspree.io/f/your-id" method="POST">
+      <label>名字<input type="text" name="name" required></label>
+      <label>联系方式（电话或邮箱）<input type="text" name="contact" required></label>
+      <label>需求与预算<textarea name="message" rows="5" required></textarea></label>
+      <button type="submit" class="btn">发送</button>
+      <p class="form-tip">未配置表单前，此表单只做演示。上线时请把 action 替换为你的 Formspree 或后端地址。</p>
+    </form>
+  </div>
+</section>
+
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <p>© <span id="year">2025</span> HJHY. 使用您自有授权的图片与文案。</p>
+  </div>
+</footer>
+<script src="js/main.js"></script>
+</body>
+</html>
