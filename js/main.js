@@ -1,27 +1,66 @@
+// 移动端菜单展开/收起
+const mobileBtn = document.getElementById('mobileMenuBtn');
+const mobileNav = document.getElementById('mobileNav');
 
-// 菜单与年份
-const y = document.getElementById('year');
-if (y) y.textContent = new Date().getFullYear();
-
-const menuBtn = document.querySelector('.menu-btn');
-if (menuBtn){
-  menuBtn.addEventListener('click', ()=> {
-    const nav = document.querySelector('.main-nav');
-    if(!nav) return;
-    nav.style.display = (nav.style.display === 'block') ? 'none' : 'block';
+if (mobileBtn && mobileNav) {
+  mobileBtn.addEventListener('click', () => {
+    mobileNav.classList.toggle('active');
   });
 }
 
-// 表单：若未配置真实后端，则阻止提交并提示
-const form = document.getElementById('contact-form');
-if (form){
-  form.addEventListener('submit', (e)=>{
-    const action = form.getAttribute('action') || '';
-    if (!action || action.includes('your-id')){
-      e.preventDefault();
-      alert('演示表单：请在 contact.html 中把 action 替换为你的 Formspree 或后端地址后再上线。');
-    }
-  });
-}
+// 顶部轮播
+const slider = document.getElementById('heroSlider');
+if (slider) {
+  const slides = Array.from(slider.querySelectorAll('.hero-slide'));
+  const dots = Array.from(document.querySelectorAll('.hero-dot'));
+  const prevBtn = document.getElementById('heroPrev');
+  const nextBtn = document.getElementById('heroNext');
 
-// 图片将优先加载 .jpg，失败时回退到 .svg（见各 <img> 的 onerror 属性）
+  let current = 0;
+  let timer = null;
+
+  function showSlide(index) {
+    slides.forEach((s, i) => {
+      s.classList.toggle('active', i === index);
+    });
+    dots.forEach((d, i) => {
+      d.classList.toggle('active', i === index);
+    });
+    current = index;
+  }
+
+  function next() {
+    const nextIndex = (current + 1) % slides.length;
+    showSlide(nextIndex);
+  }
+
+  function prev() {
+    const prevIndex = (current - 1 + slides.length) % slides.length;
+    showSlide(prevIndex);
+  }
+
+  function startAuto() {
+    timer = setInterval(next, 5000);
+  }
+
+  function stopAuto() {
+    if (timer) clearInterval(timer);
+  }
+
+  if (nextBtn) nextBtn.addEventListener('click', () => {
+    stopAuto(); next(); startAuto();
+  });
+  if (prevBtn) prevBtn.addEventListener('click', () => {
+    stopAuto(); prev(); startAuto();
+  });
+
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      const index = Number(dot.dataset.index || 0);
+      stopAuto(); showSlide(index); startAuto();
+    });
+  });
+
+  showSlide(0);
+  startAuto();
+}
