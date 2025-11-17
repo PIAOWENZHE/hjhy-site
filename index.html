@@ -5,18 +5,14 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>DAO 星秀 — 模特展示与经纪</title>
 
-  <!-- 基础样式 -->
   <link rel="stylesheet" href="styles.css" />
-
-  <!-- Favicon -->
   <link rel="icon" href="images/logo.png" />
 
-  <!-- SEO -->
-  <meta name="description" content="DAO 星秀 — 高端模特展示、写真拍摄、商业拍摄、伴游接待、私人服务。">
-  <meta property="og:title" content="DAO 星秀 — 模特展示与经纪"/>
-  <meta property="og:type" content="website"/>
-  <meta property="og:image" content="images/hero-1.webp"/>
-  <meta property="og:locale" content="zh_CN"/>
+  <meta name="description" content="DAO 星秀 — 高端模特展示与经纪服务。">
+  <meta property="og:title" content="DAO 星秀 — 模特展示与经纪" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="images/hero-1.webp" />
+  <meta property="og:locale" content="zh_CN" />
 </head>
 <body>
 
@@ -30,21 +26,19 @@
       </a>
 
       <nav class="main-nav">
-        <a href="index.html">首页</a>
+        <a href="index.html" class="active">首页</a>
         <a href="models.html">模特</a>
         <a href="about.html">关于我们</a>
         <a href="contact.html">联系我们</a>
         <a href="tel:01012345678" class="call-btn">商务合作</a>
       </nav>
 
-      <!-- 移动端菜单按钮 -->
-      <div class="mobile-menu-btn" onclick="toggleMenu()">☰</div>
-
+      <div class="mobile-menu-btn" id="mobileMenuBtn">☰</div>
     </div>
   </header>
 
   <!-- 移动端下拉菜单 -->
-  <nav class="mobile-nav">
+  <nav class="mobile-nav" id="mobileNav">
     <a href="index.html">首页</a>
     <a href="models.html">模特</a>
     <a href="about.html">关于我们</a>
@@ -52,29 +46,35 @@
     <a href="tel:01012345678" class="call-btn">商务合作</a>
   </nav>
 
-  <script>
-    function toggleMenu(){
-      document.querySelector('.mobile-nav').classList.toggle('active');
-    }
-  </script>
-
-
-  <!-- 顶部轮播 -->
-  <div class="slider">
-    <div class="slides">
-      <div class="slide"><img src="images/hero-1.webp" alt=""></div>
-      <div class="slide"><img src="images/hero-2.webp" alt=""></div>
-      <div class="slide"><img src="images/hero-3.webp" alt=""></div>
+  <!-- 顶部大图轮播 -->
+  <section class="hero-slider" id="heroSlider">
+    <div class="hero-slide active">
+      <img src="images/hero-1.webp" alt="">
     </div>
-  </div>
+    <div class="hero-slide">
+      <img src="images/hero-2.webp" alt="">
+    </div>
+    <div class="hero-slide">
+      <img src="images/hero-3.webp" alt="">
+    </div>
 
+    <!-- 左右切换按钮 -->
+    <button class="hero-nav hero-prev" id="heroPrev">‹</button>
+    <button class="hero-nav hero-next" id="heroNext">›</button>
 
-  <!-- 模特列表（首页精选） -->
+    <!-- 底部小圆点 -->
+    <div class="hero-dots" id="heroDots">
+      <span class="hero-dot active" data-index="0"></span>
+      <span class="hero-dot" data-index="1"></span>
+      <span class="hero-dot" data-index="2"></span>
+    </div>
+  </section>
+
+  <!-- 首页精选模特 -->
   <section class="featured-models container">
     <h2 class="section-title">精选模特</h2>
 
     <div class="model-grid">
-
       <a href="model-1.html" class="model-card">
         <img src="images/model-1.webp" alt="">
         <div class="model-info">模特 01</div>
@@ -93,17 +93,16 @@
       <a href="models.html" class="model-card more-card">
         <div class="more-text">查看更多 →</div>
       </a>
-
     </div>
   </section>
 
-
-  <!-- Footer -->
+  <!-- 页脚 -->
   <footer class="site-footer">
     <div class="container">
       <p>© 2025 DAO 星秀 — 模特展示与经纪服务</p>
     </div>
   </footer>
 
+  <script src="js/main.js"></script>
 </body>
 </html>
