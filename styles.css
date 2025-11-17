@@ -1,9 +1,17 @@
-/* 全局基础 */
+/* ===== 全局基础 ===== */
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial;
   background: #ffffff;
   color: #222;
+}
+
+img {
+  display: block;
 }
 
 .container {
@@ -12,7 +20,7 @@ body {
   margin: auto;
 }
 
-/* 顶部导航 */
+/* ===== 顶部导航 ===== */
 .site-header {
   background: #fff;
   border-bottom: 1px solid #eee;
@@ -48,6 +56,7 @@ body {
 .main-nav {
   display: flex;
   gap: 24px;
+  align-items: center;
 }
 
 .main-nav a {
@@ -57,17 +66,28 @@ body {
   padding: 6px 0;
 }
 
+.main-nav a.active {
+  font-weight: 600;
+}
+
 .call-btn {
   background: #000;
   color: #fff !important;
   padding: 6px 14px;
   border-radius: 4px;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.call-btn.large {
+  padding: 10px 18px;
+  font-size: 16px;
 }
 
 /* 移动端菜单按钮 */
 .mobile-menu-btn {
   display: none;
-  font-size: 28px;
+  font-size: 26px;
   cursor: pointer;
 }
 
@@ -86,51 +106,80 @@ body {
   text-decoration: none;
 }
 
-.mobile-nav.active {
-  display: flex;
+.mobile-nav .call-btn {
+  margin: 10px 20px;
 }
 
-/* 轮播区域 */
-.slider {
+/* ===== 顶部轮播 ===== */
+.hero-slider {
+  position: relative;
   width: 100%;
   height: 60vh;
   max-height: 720px;
   overflow: hidden;
-  position: relative;
 }
 
-.slides {
-  display: flex;
-  width: 300%;
-  height: 100%;
-  animation: slideAnimation 12s infinite;
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.7s ease;
 }
 
-.slide {
-  width: 100%;
-  flex-shrink: 0;
+.hero-slide.active {
+  opacity: 1;
 }
 
-.slide img {
+.hero-slide img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-/* 轮播动画 */
-@keyframes slideAnimation {
-  0% { transform: translateX(0); }
-  33% { transform: translateX(0); }
-
-  36% { transform: translateX(-100%); }
-  66% { transform: translateX(-100%); }
-
-  69% { transform: translateX(-200%); }
-  99% { transform: translateX(-200%); }
+/* 轮播左右按钮 */
+.hero-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: rgba(0,0,0,0.35);
+  color: #fff;
+  padding: 8px 14px;
+  cursor: pointer;
+  font-size: 22px;
 }
 
+.hero-prev {
+  left: 16px;
+}
 
-/* 首页：精选模特 */
+.hero-next {
+  right: 16px;
+}
+
+/* 轮播小圆点 */
+.hero-dots {
+  position: absolute;
+  bottom: 16px;
+  width: 100%;
+  text-align: center;
+}
+
+.hero-dot {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.5);
+  margin: 0 4px;
+  cursor: pointer;
+}
+
+.hero-dot.active {
+  background: #fff;
+}
+
+/* ===== 首页：精选模特 ===== */
 .featured-models {
   padding: 60px 0;
 }
@@ -154,6 +203,7 @@ body {
   background: #f8f8f8;
   text-decoration: none;
   position: relative;
+  color: #000;
 }
 
 .model-card img {
@@ -165,7 +215,6 @@ body {
 .model-info {
   padding: 12px;
   font-size: 16px;
-  color: #000;
   text-align: center;
   font-weight: 500;
 }
@@ -178,11 +227,173 @@ body {
 
 .more-text {
   font-size: 20px;
-  color: #000;
 }
 
+/* ===== 模特列表页 ===== */
+.model-list {
+  padding: 60px 0;
+}
 
-/* Footer */
+.model-page-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.model-page-card {
+  display: block;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #f6f6f6;
+  text-decoration: none;
+  color: #000;
+  transition: transform 0.2s;
+}
+
+.model-page-card:hover {
+  transform: translateY(-3px);
+}
+
+.model-page-card img {
+  width: 100%;
+  height: 360px;
+  object-fit: cover;
+}
+
+.model-name {
+  text-align: center;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+/* ===== 模特详情页 ===== */
+.model-detail {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  gap: 40px;
+  padding: 50px 0;
+}
+
+.model-main-photo img {
+  width: 100%;
+  height: 480px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.model-thumbs {
+  margin-top: 12px;
+  display: flex;
+  gap: 8px;
+}
+
+.model-thumbs .thumb {
+  flex: 1;
+  border-radius: 6px;
+  overflow: hidden;
+  opacity: 0.7;
+}
+
+.model-thumbs .thumb img {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+}
+
+.model-thumbs .thumb.active {
+  opacity: 1;
+}
+
+.model-detail-name {
+  font-size: 26px;
+  margin-top: 0;
+}
+
+.model-detail-info p {
+  margin: 4px 0;
+}
+
+.model-detail-info span:first-child {
+  display: inline-block;
+  width: 60px;
+  color: #666;
+}
+
+.model-detail-actions {
+  margin: 20px 0;
+  display: flex;
+  gap: 16px;
+}
+
+.secondary-btn {
+  border: 1px solid #000;
+  padding: 8px 16px;
+  border-radius: 4px;
+  text-decoration: none;
+  color: #000;
+  background: #fff;
+}
+
+.model-detail-desc {
+  margin-top: 10px;
+  color: #555;
+}
+
+/* ===== 静态页面（关于 / 联系） ===== */
+.static-page {
+  padding: 50px 0;
+}
+
+.static-title {
+  font-size: 26px;
+  margin-bottom: 20px;
+}
+
+.static-content {
+  font-size: 15px;
+  color: #444;
+  line-height: 1.7;
+}
+
+/* 联系页面布局 */
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 40px;
+  margin-top: 20px;
+}
+
+.contact-info p {
+  margin: 8px 0;
+}
+
+.contact-info a {
+  color: #000;
+  text-decoration: none;
+}
+
+/* 联系表单 */
+.contact-form .form-row {
+  margin-bottom: 16px;
+}
+
+.contact-form label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 14px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+/* ===== Footer ===== */
 .site-footer {
   padding: 30px 0;
   background: #fafafa;
@@ -192,8 +403,13 @@ body {
   color: #666;
 }
 
+/* ===== 响应式：平板/手机 ===== */
+@media (max-width: 1024px) {
+  .model-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
 
-/* ------ 响应式：移动端 ------ */
 @media (max-width: 768px) {
 
   .main-nav {
@@ -204,7 +420,7 @@ body {
     display: block;
   }
 
-  .slider {
+  .hero-slider {
     height: 36vh;
   }
 
@@ -213,6 +429,26 @@ body {
   }
 
   .model-card img {
-    height: 200px;
+    height: 220px;
+  }
+
+  .model-page-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .model-page-card img {
+    height: 220px;
+  }
+
+  .model-detail {
+    grid-template-columns: 1fr;
+  }
+
+  .model-main-photo img {
+    height: 360px;
+  }
+
+  .contact-layout {
+    grid-template-columns: 1fr;
   }
 }
